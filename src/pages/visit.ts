@@ -63,6 +63,22 @@ export function renderVisitPage(): HTMLElement {
 
   hoursRow.append(pill, hoursText)
 
+  const hero = document.createElement('div')
+  hero.className = 'pageHero'
+
+  const heroPhoto = document.createElement('div')
+  heroPhoto.className = 'photo'
+
+  const heroImg = document.createElement('img')
+  heroImg.src = '/assets/food/L_imprimerie_Hero_2880x2304.jpg'
+  heroImg.alt = 'Bread and pastries from L’imprimerie'
+  heroImg.loading = 'lazy'
+  heroImg.width = 1600
+  heroImg.height = 2000
+
+  heroPhoto.appendChild(heroImg)
+  hero.appendChild(heroPhoto)
+
   const mapWrap = document.createElement('div')
   mapWrap.className = 'mapWrap'
 
@@ -84,7 +100,7 @@ export function renderVisitPage(): HTMLElement {
 
   mapWrap.append(iframe, mapFallback)
 
-  container.append(title, address, actions, hoursRow, mapWrap)
+  container.append(title, address, actions, hoursRow, hero, mapWrap)
   section.appendChild(container)
   return section
 }

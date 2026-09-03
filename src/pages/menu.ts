@@ -67,6 +67,22 @@ export function renderMenuPage(): HTMLElement {
   lead.className = 'lead'
   lead.textContent = 'Curated selection. Items may vary daily.'
 
+  const hero = document.createElement('div')
+  hero.className = 'pageHero'
+
+  const heroPhoto = document.createElement('div')
+  heroPhoto.className = 'photo'
+
+  const heroImg = document.createElement('img')
+  heroImg.src = '/assets/food/L_imprimerie_Levain_2880x2304.jpg'
+  heroImg.alt = 'Levain sourdough loaf from L’imprimerie'
+  heroImg.loading = 'lazy'
+  heroImg.width = 1600
+  heroImg.height = 2000
+
+  heroPhoto.appendChild(heroImg)
+  hero.appendChild(heroPhoto)
+
   const jumps = document.createElement('nav')
   jumps.className = 'menuJumps'
   jumps.setAttribute('aria-label', 'Menu categories')
@@ -141,7 +157,7 @@ export function renderMenuPage(): HTMLElement {
 
   utils.append(visit, delivery)
 
-  container.append(title, lead, jumps, content)
+  container.append(title, lead, hero, jumps, content, utils)
   section.appendChild(container)
   return section
 }
