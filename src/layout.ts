@@ -1,11 +1,13 @@
 import type { Route } from './router'
 import { createHeader } from './components/header'
+import { createFooter } from './components/footer'
 
 export function createAppShell(route: Route, mainContent: HTMLElement): HTMLElement {
   const shell = document.createElement('div')
   shell.className = 'appShell'
 
   const header = createHeader(route)
+  const footer = createFooter()
 
   const main = document.createElement('main')
   main.id = 'main'
@@ -23,7 +25,7 @@ export function createAppShell(route: Route, mainContent: HTMLElement): HTMLElem
     main.focus()
   })
 
-  shell.append(skip, header, main)
+  shell.append(skip, header, main, footer)
   return shell
 }
 
