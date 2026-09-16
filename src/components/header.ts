@@ -1,18 +1,41 @@
 import type { Route } from '../router'
 import { BRAND_NAME, BRAND_TAGLINE } from '../content'
 
-const ROUTES: Array<{ route: Route; label: string }> = [
-  { route: '/menu', label: 'Menu' },
-  { route: '/visit', label: 'Visit' },
-  { route: '/delivery', label: 'Order Online' },
-  { route: '/gift-cards', label: 'Gift Cards' },
-  { route: '/faq', label: 'FAQ' },
-  { route: '/merch', label: 'Merch' },
-  { route: '/contact', label: 'Contact' },
+type NavItem =
+  | { label: string; route: Route }
+  | { label: string; externalHref: string }
+
+// Menu is deliberately absent — it's reached from the per-location buttons on Visit.
+const ROUTES: NavItem[] = [
+  { label: 'Visit', route: '/visit' },
+  { label: 'Order Online', route: '/delivery' },
+  // TODO: Point at the gift card provider (Toast/Square/etc.) once there's an account,
+  // and swap `route` for `externalHref` — the nav already renders external links.
+  { label: 'Gift Cards', route: '/gift-cards' },
+  { label: 'FAQ', route: '/faq' },
+  { label: 'Merch', route: '/merch' },
+  { label: 'Contact', route: '/contact' },
 ]
 
 function routeHref(route: Route) {
   return `#${route}`
+}
+
+function createNavLink(item: NavItem, activeRoute: Route): HTMLAnchorElement {
+  const a = document.createElement('a')
+  a.textContent = item.label
+
+  if ('externalHref' in item) {
+    a.href = item.externalHref
+    a.target = '_blank'
+    a.rel = 'noopener noreferrer'
+    return a
+  }
+
+  a.href = routeHref(item.route)
+  a.setAttribute('data-route', item.route)
+  if (item.route === activeRoute) a.setAttribute('aria-current', 'page')
+  return a
 }
 
 export function createHeader(activeRoute: Route): HTMLElement {
@@ -30,13 +53,8 @@ export function createHeader(activeRoute: Route): HTMLElement {
   const desktopNav = document.createElement('nav')
   desktopNav.className = 'siteHeader__nav siteHeader__nav--desktop'
   desktopNav.setAttribute('aria-label', 'Primary')
-  for (const { route, label } of ROUTES) {
-    const a = document.createElement('a')
-    a.href = routeHref(route)
-    a.textContent = label
-    a.setAttribute('data-route', route)
-    if (route === activeRoute) a.setAttribute('aria-current', 'page')
-    desktopNav.appendChild(a)
+  for (const item of ROUTES) {
+    desktopNav.appendChild(createNavLink(item, activeRoute))
   }
 
   const mobileToggle = document.createElement('button')
@@ -67,12 +85,8 @@ export function createHeader(activeRoute: Route): HTMLElement {
   const mobileNav = document.createElement('nav')
   mobileNav.className = 'mobileMenu__nav'
   mobileNav.setAttribute('aria-label', 'Primary')
-  for (const { route, label } of ROUTES) {
-    const a = document.createElement('a')
-    a.href = routeHref(route)
-    a.textContent = label
-    if (route === activeRoute) a.setAttribute('aria-current', 'page')
-    mobileNav.appendChild(a)
+  for (const item of ROUTES) {
+    mobileNav.appendChild(createNavLink(item, activeRoute))
   }
 
   let lastFocus: Element | null = null

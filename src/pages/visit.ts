@@ -45,8 +45,11 @@ export function renderVisitPage(): HTMLElement {
     name.className = 'locationCard__name'
     name.textContent = loc.name
 
-    const address = document.createElement('p')
+    const address = document.createElement('a')
     address.className = 'locationCard__address'
+    address.href = getDirectionsUrl(loc.addressQuery)
+    address.target = '_blank'
+    address.rel = 'noopener noreferrer'
     address.textContent = loc.addressDisplay
 
     const hours = getOpenNow({ tz: TIMEZONE, ...loc.hours }, new Date())
@@ -64,14 +67,12 @@ export function renderVisitPage(): HTMLElement {
 
     hoursRow.append(pill, hoursText)
 
-    const directions = document.createElement('a')
-    directions.className = 'button button--primary'
-    directions.href = getDirectionsUrl(loc.addressQuery)
-    directions.target = '_blank'
-    directions.rel = 'noopener noreferrer'
-    directions.textContent = 'Get directions'
+    const menu = document.createElement('a')
+    menu.className = 'button button--primary'
+    menu.href = '#/menu'
+    menu.textContent = 'Menu'
 
-    card.append(photo, name, address, hoursRow, directions)
+    card.append(photo, name, address, hoursRow, menu)
     grid.appendChild(card)
   }
 
