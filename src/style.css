@@ -23,6 +23,10 @@
   /* mustard — secondary accent */
   --gold: #e0a530;
   --gold-ink: #241f19;
+  /* pale sage — menu page ground (radiobakery.nyc's own menu page) */
+  --menu-bg: #dfe6d3;
+  --menu-ink: #223321;
+  --menu-muted: #62785f;
 
   --font-display: 'Bricolage Grotesque', 'Zen Kaku Gothic New', sans-serif;
 
@@ -111,6 +115,10 @@ button:focus-visible {
 
 .main {
   padding-block: clamp(var(--space-7), 8vw, var(--space-9));
+}
+
+.main:has(.page--menu) {
+  padding-block: 0;
 }
 
 .pageTitle {
@@ -550,33 +558,57 @@ button:focus-visible {
   font-size: 13px;
 }
 
-/* ---------- menu page ---------- */
+/* ---------- menu page: flat sage price list, after radiobakery.nyc's own menu page ---------- */
+
+.page--menu {
+  background: var(--menu-bg);
+  color: var(--menu-ink);
+  padding-block: clamp(var(--space-7), 8vw, var(--space-9));
+}
+
+.container--narrow {
+  width: min(640px, calc(100% - 2 * clamp(20px, 6vw, 72px)));
+  margin-inline: auto;
+  text-align: center;
+}
+
+.pageTitle--menu {
+  text-transform: uppercase;
+  color: var(--menu-ink);
+}
+
+.lead--menu {
+  margin-inline: auto;
+  color: var(--menu-muted);
+}
 
 .menuJumps {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-2);
-  margin-bottom: var(--space-7);
+  justify-content: center;
+  gap: var(--space-2) var(--space-5);
+  margin: var(--space-6) 0 var(--space-8);
 }
 
 .menuJumps button {
   appearance: none;
-  background: var(--bg-raised);
+  background: transparent;
+  border: 0;
   font-family: var(--font-display);
   cursor: pointer;
-  padding: 9px 20px;
-  border: 2px solid var(--fg);
-  border-radius: 999px;
+  padding: 4px 0;
   font-size: 15px;
   font-weight: 600;
   letter-spacing: -0.01em;
-  color: var(--fg);
-  transition: background 200ms ease, color 200ms ease;
+  color: var(--menu-ink);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 4px;
+  transition: text-decoration-color 200ms ease;
 }
 
 .menuJumps button:hover {
-  background: var(--fg);
-  color: var(--bg);
+  text-decoration-color: var(--menu-ink);
 }
 
 .menuContent {
@@ -585,11 +617,19 @@ button:focus-visible {
 }
 
 .menuCategory__title {
-  margin: 0 0 var(--space-5);
+  margin: 0 0 var(--space-1);
   font-family: var(--font-display);
-  font-size: 30px;
+  font-size: clamp(28px, 4vw, 38px);
   font-weight: 800;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--menu-ink);
+}
+
+.menuCategory__subtitle {
+  margin: 0 0 var(--space-6);
+  color: var(--menu-muted);
+  font-size: 14px;
 }
 
 .menuList {
@@ -597,7 +637,6 @@ button:focus-visible {
   padding: 0;
   margin: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: var(--space-5);
 }
 
@@ -606,34 +645,35 @@ button:focus-visible {
   flex-direction: column;
 }
 
-.menuItem__photo {
-  aspect-ratio: 4 / 3;
-  margin-bottom: var(--space-3);
-}
-
 .menuItem__row {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  gap: var(--space-2);
+  gap: var(--space-3);
 }
 
 .menuItem__name {
-  font-weight: 700;
-  font-size: 16px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 17px;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--menu-ink);
 }
 
 .menuItem__price {
-  font-weight: 700;
-  font-size: 15px;
-  color: var(--accent);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--menu-muted);
   white-space: nowrap;
 }
 
 .menuItem__note {
-  color: var(--muted);
+  color: var(--menu-muted);
   font-size: 13px;
   margin-top: 2px;
+  text-align: left;
 }
 
 .menuUtils {
@@ -644,6 +684,14 @@ button:focus-visible {
 
 .menuUtils .textLink {
   margin-top: 0;
+  margin-inline: auto;
+  color: var(--menu-muted);
+  border-color: var(--menu-muted);
+}
+
+.menuUtils .textLink:hover {
+  color: var(--menu-ink);
+  border-color: var(--menu-ink);
 }
 
 /* ---------- responsive ---------- */
