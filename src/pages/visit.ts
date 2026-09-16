@@ -4,6 +4,7 @@ import {
   POLICY_NO_PREORDERS,
   POLICY_PRODUCTION,
 } from '../content'
+import { assetUrl } from '../utils/asset'
 import { getDirectionsUrl } from '../utils/maps'
 
 export function renderVisitPage(): HTMLElement {
@@ -32,7 +33,7 @@ export function renderVisitPage(): HTMLElement {
     photo.className = 'photo locationCard__photo'
 
     const img = document.createElement('img')
-    img.src = loc.photo
+    img.src = assetUrl(loc.photo)
     img.alt = loc.photoAlt
     img.loading = 'lazy'
     img.width = 1200

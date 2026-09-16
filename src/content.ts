@@ -32,7 +32,7 @@ export const LOCATIONS: ReadonlyArray<Location> = [
     name: 'Bushwick',
     addressDisplay: '1524 Myrtle Avenue, Brooklyn',
     addressQuery: '1524 Myrtle Avenue, Brooklyn, NY',
-    photo: '/assets/food/L_imprimerie_Hero_2880x2304.jpg',
+    photo: 'assets/food/L_imprimerie_Hero_2880x2304.jpg',
     photoAlt: 'Bread and pastries from L’imprimerie, Bushwick',
   },
   {
@@ -40,7 +40,7 @@ export const LOCATIONS: ReadonlyArray<Location> = [
     name: 'Clinton Hill',
     addressDisplay: '204 DeKalb Avenue, Brooklyn',
     addressQuery: '204 DeKalb Avenue, Brooklyn, NY',
-    photo: '/assets/food/L_imprimerie_Hero_2880x2304(1).jpg',
+    photo: 'assets/food/L_imprimerie_Hero_2880x2304(1).jpg',
     photoAlt: 'Bread and pastries from L’imprimerie, Clinton Hill',
   },
 ]

@@ -31,7 +31,7 @@ There's no test suite or linter configured.
 src/
   content.ts        # all site copy/data — locations, FAQs, merch, delivery partners, etc.
   router.ts          # hash-based router
-  layout.ts           # page shell: header + main + footer
+  layout.ts           # page shell: header + main (no footer, by design)
   main.ts             # entry point, wires router -> page renderer
   style.css            # entire design system (CSS custom properties, no framework)
   components/         # header (there is no footer, by design)
@@ -58,6 +58,12 @@ Replace these before treating the site as launch-ready.
 
 ## Design notes
 
-The visual design borrows structural patterns — flat color-blocked pages, pill buttons, the menu page's plain price-list format, the two-location card layout — from [radiobakery.nyc](https://radiobakery.nyc), a real Brooklyn bakery, as a design reference. Brand identity (name, palette, typography, logo, content) is original to L'imprimerie throughout.
+The visual design is built structurally and stylistically after [radiobakery.nyc](https://radiobakery.nyc), a real Brooklyn bakery: layout patterns (flat color-blocked pages, the centered masthead, the photo-overlay location cards, the menu page's plain price-list format), typography (Archivo Black + Poppins), and the color palette (`#dcf3c6` / `#004b3b` / `#0d8453`) all match their site by direct measurement. Brand identity — name, logo, photography, and all content — is original to L'imprimerie; none of their copy, images, or trademarks are reused.
 
 See [CLAUDE.md](./CLAUDE.md) for the design-token system and routing/content architecture in more detail.
+
+## Deployment
+
+Pushes to `main` deploy automatically to GitHub Pages via `.github/workflows/deploy.yml` — typecheck, build, then publish. Live at **https://jxstin-potter.github.io/Limprimerie-Bakery-Website/**.
+
+The site is served from that subpath rather than a domain root, so `vite.config.ts` sets `base: '/Limprimerie-Bakery-Website/'`. Any `public/` asset referenced as a runtime string (not a static `import`) needs to go through `assetUrl()` from `src/utils/asset.ts` rather than a hardcoded `/assets/...` path, or it will 404 in production while still working in dev. The router is hash-based (`#/visit`, `#/menu`, ...), so there's no server-side routing to configure — every route resolves to the same `index.html`.

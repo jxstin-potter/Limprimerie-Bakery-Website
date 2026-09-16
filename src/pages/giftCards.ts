@@ -1,4 +1,5 @@
 import { PHONE_DISPLAY, PHONE_TEL } from '../content'
+import { assetUrl } from '../utils/asset'
 
 export function renderGiftCardsPage(): HTMLElement {
   const section = document.createElement('section')
@@ -22,7 +23,7 @@ export function renderGiftCardsPage(): HTMLElement {
   heroPhoto.className = 'photo'
 
   const heroImg = document.createElement('img')
-  heroImg.src = '/assets/food/L_imprimerie_ChocolateChipCookie_2880x2304.jpg'
+  heroImg.src = assetUrl('assets/food/L_imprimerie_ChocolateChipCookie_2880x2304.jpg')
   heroImg.alt = 'Fresh-baked treats from L’imprimerie'
   heroImg.loading = 'lazy'
   heroImg.width = 1600
