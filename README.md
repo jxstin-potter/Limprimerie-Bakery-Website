@@ -17,7 +17,7 @@ There's no test suite or linter configured.
 
 | Route | Purpose |
 | --- | --- |
-| `/visit` | Two-location grid — photo, hours/status, address, directions (default route) |
+| `/visit` | Two-location grid — photo cards with overlaid address and menu link (default route) |
 | `/menu` | Centered price list, grouped by category |
 | `/delivery` | Links to delivery-app partners |
 | `/faq` | Common questions |
@@ -34,9 +34,9 @@ src/
   layout.ts           # page shell: header + main + footer
   main.ts             # entry point, wires router -> page renderer
   style.css            # entire design system (CSS custom properties, no framework)
-  components/         # header, footer
+  components/         # header (there is no footer, by design)
   pages/               # one render*Page() function per route
-  utils/               # maps/directions URL helpers, open-now time logic
+  utils/               # maps/directions URL helpers
 public/assets/food/   # food photography used across the site
 ```
 
@@ -47,10 +47,12 @@ Each page module exports a single `render*Page(): HTMLElement` function that bui
 Most of the site's copy is real (brand name, address format, delivery partners), but several pieces in `src/content.ts` and `src/pages/menu.ts` are explicitly placeholder, marked with `// TODO`:
 
 - **Locations** — the second location (Clinton Hill) is a fictional stand-in
+- **Hours** — both shops share one placeholder hours line
 - **Menu items and all prices** — illustrative, not the bakery's actual offerings
-- **FAQ answers** — plausible but not verified against real policy
+- **FAQ answers** — quote specific release and sell-out times that are invented; verify every one before publishing
 - **Merch items and prices** — illustrative
 - **Contact email** — placeholder inbox
+- **Gift Cards** — an informational page; the reference site links out to a payment provider instead, which this can become once there's an account (the nav already renders external links)
 
 Replace these before treating the site as launch-ready.
 
