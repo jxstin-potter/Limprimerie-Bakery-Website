@@ -13,8 +13,7 @@ export function renderGiftCardsPage(): HTMLElement {
 
   const lead = document.createElement('p')
   lead.className = 'lead'
-  lead.textContent =
-    'Share a taste of L’imprimerie. Gift cards are available in any amount, redeemable at both locations.'
+  lead.textContent = 'Any amount, redeemable at both locations'
 
   const hero = document.createElement('div')
   hero.className = 'pageHero'
@@ -33,8 +32,8 @@ export function renderGiftCardsPage(): HTMLElement {
   hero.appendChild(heroPhoto)
 
   const note = document.createElement('p')
-  note.className = 'lead'
-  note.textContent = "We don't sell gift cards online — pick one up in store or call ahead."
+  note.className = 'policyBlock__line policyBlock__line--strong'
+  note.textContent = 'We do not sell gift cards online. Pick one up in store or call ahead.'
 
   const actions = document.createElement('div')
   actions.className = 'giftCardActions'

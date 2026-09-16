@@ -11,10 +11,6 @@ export function renderFaqPage(): HTMLElement {
   title.className = 'pageTitle'
   title.textContent = 'FAQ'
 
-  const lead = document.createElement('p')
-  lead.className = 'lead'
-  lead.textContent = "Answers to what we get asked most. Don't see yours? Get in touch."
-
   const list = document.createElement('div')
   list.className = 'faqList'
 
@@ -34,12 +30,7 @@ export function renderFaqPage(): HTMLElement {
     list.appendChild(row)
   }
 
-  const contactLink = document.createElement('a')
-  contactLink.className = 'textLink'
-  contactLink.href = '#/contact'
-  contactLink.textContent = 'Still have a question? Contact us'
-
-  container.append(title, lead, list, contactLink)
+  container.append(title, list)
   section.appendChild(container)
   return section
 }

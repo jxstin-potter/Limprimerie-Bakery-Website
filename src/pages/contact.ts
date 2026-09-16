@@ -1,4 +1,11 @@
-import { EMAIL_DISPLAY, PHONE_DISPLAY, PHONE_TEL } from '../content'
+import {
+  EMAIL_DISPLAY,
+  LOCATIONS,
+  PHONE_DISPLAY,
+  PHONE_TEL,
+  POLICY_NO_PREORDERS,
+  POLICY_PRODUCTION,
+} from '../content'
 
 function contactField(
   labelText: string,
@@ -38,9 +45,22 @@ export function renderContactPage(): HTMLElement {
   title.className = 'pageTitle'
   title.textContent = 'Contact'
 
+  const policy = document.createElement('div')
+  policy.className = 'policyBlock policyBlock--lead'
+
+  const policyPreorders = document.createElement('p')
+  policyPreorders.className = 'policyBlock__line policyBlock__line--strong'
+  policyPreorders.textContent = POLICY_NO_PREORDERS
+
+  const policyProduction = document.createElement('p')
+  policyProduction.className = 'policyBlock__line'
+  policyProduction.textContent = POLICY_PRODUCTION
+
   const lead = document.createElement('p')
   lead.className = 'lead'
-  lead.textContent = 'Questions, feedback, or just want to say hi? Send us a note.'
+  lead.textContent = 'If you have any other questions, don’t hesitate to reach out.'
+
+  policy.append(policyPreorders, policyProduction)
 
   const form = document.createElement('form')
   form.className = 'contactForm'
@@ -48,6 +68,27 @@ export function renderContactPage(): HTMLElement {
 
   const name = contactField('Name', 'text', 'contact-name')
   const email = contactField('Email', 'email', 'contact-email')
+
+  const locationWrap = document.createElement('label')
+  locationWrap.className = 'contactField'
+  locationWrap.htmlFor = 'contact-location'
+
+  const locationLabel = document.createElement('span')
+  locationLabel.className = 'contactField__label'
+  locationLabel.textContent = 'Location'
+
+  const locationSelect = document.createElement('select')
+  locationSelect.id = 'contact-location'
+  locationSelect.name = 'contact-location'
+  for (const optionLabel of ['General inquiry', ...LOCATIONS.map((l) => l.name)]) {
+    const option = document.createElement('option')
+    option.value = optionLabel
+    option.textContent = optionLabel
+    locationSelect.appendChild(option)
+  }
+
+  locationWrap.append(locationLabel, locationSelect)
+
   const message = contactField('Message', 'textarea', 'contact-message')
 
   const submit = document.createElement('button')
@@ -60,13 +101,14 @@ export function renderContactPage(): HTMLElement {
     const nameVal = name.input.value.trim()
     const emailVal = email.input.value.trim()
     const messageVal = message.input.value.trim()
+    const locationVal = locationSelect.value
 
-    const subject = encodeURIComponent(`Message from ${nameVal || 'the website'}`)
+    const subject = encodeURIComponent(`${locationVal} — ${nameVal || 'website enquiry'}`)
     const body = encodeURIComponent(`${messageVal}\n\n— ${nameVal} (${emailVal})`)
     window.location.href = `mailto:${EMAIL_DISPLAY}?subject=${subject}&body=${body}`
   })
 
-  form.append(name.wrap, email.wrap, message.wrap, submit)
+  form.append(name.wrap, email.wrap, locationWrap, message.wrap, submit)
 
   const phone = document.createElement('p')
   phone.className = 'contactPhone'
@@ -77,7 +119,7 @@ export function renderContactPage(): HTMLElement {
   phoneLink.textContent = PHONE_DISPLAY
   phone.appendChild(phoneLink)
 
-  container.append(title, lead, form, phone)
+  container.append(title, policy, lead, form, phone)
   section.appendChild(container)
   return section
 }

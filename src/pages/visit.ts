@@ -1,4 +1,9 @@
-import { LOCATIONS, TIMEZONE } from '../content'
+import {
+  LOCATIONS,
+  POLICY_NO_PREORDERS,
+  POLICY_PRODUCTION,
+  TIMEZONE,
+} from '../content'
 import { getDirectionsUrl } from '../utils/maps'
 import { getOpenNow } from '../utils/time'
 
@@ -15,8 +20,7 @@ export function renderVisitPage(): HTMLElement {
 
   const lead = document.createElement('p')
   lead.className = 'lead'
-  lead.textContent =
-    'Two Brooklyn locations. Everything we bake is available in store, first-come first-served.'
+  lead.textContent = 'Two Brooklyn locations'
 
   const grid = document.createElement('div')
   grid.className = 'locationGrid'
@@ -71,12 +75,25 @@ export function renderVisitPage(): HTMLElement {
     grid.appendChild(card)
   }
 
+  const policy = document.createElement('div')
+  policy.className = 'policyBlock'
+
+  const policyProduction = document.createElement('p')
+  policyProduction.className = 'policyBlock__line'
+  policyProduction.textContent = POLICY_PRODUCTION
+
+  const policyPreorders = document.createElement('p')
+  policyPreorders.className = 'policyBlock__line policyBlock__line--strong'
+  policyPreorders.textContent = POLICY_NO_PREORDERS
+
+  policy.append(policyProduction, policyPreorders)
+
   const delivery = document.createElement('a')
   delivery.className = 'textLink'
   delivery.href = '#/delivery'
   delivery.textContent = 'Prefer delivery? Find us on delivery apps'
 
-  container.append(title, lead, grid, delivery)
+  container.append(title, lead, grid, policy, delivery)
   section.appendChild(container)
   return section
 }

@@ -1,4 +1,4 @@
-import { MERCH_ITEMS } from '../content'
+import { MERCH_ITEMS, MERCH_POLICY } from '../content'
 
 export function renderMerchPage(): HTMLElement {
   const section = document.createElement('section')
@@ -13,7 +13,7 @@ export function renderMerchPage(): HTMLElement {
 
   const lead = document.createElement('p')
   lead.className = 'lead'
-  lead.textContent = 'A few things to take home besides bread. Available in store only.'
+  lead.textContent = 'Available in store only'
 
   const list = document.createElement('ul')
   list.className = 'menuList'
@@ -46,7 +46,11 @@ export function renderMerchPage(): HTMLElement {
     list.appendChild(li)
   }
 
-  container.append(title, lead, list)
+  const policy = document.createElement('p')
+  policy.className = 'policyBlock__line policyBlock__line--strong merchPolicy'
+  policy.textContent = MERCH_POLICY
+
+  container.append(title, lead, list, policy)
   section.appendChild(container)
   return section
 }

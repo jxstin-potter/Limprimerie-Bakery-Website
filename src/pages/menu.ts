@@ -11,48 +11,57 @@ type MenuCategory = {
   items: MenuItem[]
 }
 
-// TODO: Replace with the bakery’s actual curated selection and prices.
+// TODO: Replace with the bakery’s actual selection, prices, and release times.
 const CATEGORIES: MenuCategory[] = [
-  {
-    id: 'breads',
-    title: 'Breads',
-    subtitle: 'Baked each morning',
-    items: [
-      { name: 'Baguette', note: 'Classic French loaf', price: '$6' },
-      { name: 'Country loaf', note: 'Hearty, everyday', price: '$9' },
-      { name: 'Sourdough', note: 'Naturally leavened', price: '$9' },
-      { name: 'Seasonal loaf', note: 'Rotates', price: '$9' },
-    ],
-  },
   {
     id: 'viennoiserie',
     title: 'Viennoiserie',
-    subtitle: '7:30am until sold out',
+    subtitle: '7:30 AM until sold out',
     items: [
-      { name: 'Croissant', price: '$4.50' },
+      { name: 'Croissant', price: '$4.5' },
       { name: 'Pain au chocolat', price: '$5' },
-      { name: 'Almond croissant', price: '$5.50' },
-      { name: 'Seasonal viennoiserie', note: 'Rotates', price: '$5.50' },
+      { name: 'Almond croissant', note: 'frangipane, toasted almonds', price: '$5.5' },
+      {
+        name: 'Chocolate almond croissant',
+        note: 'frangipane, dark chocolate, toasted almonds',
+        price: '$6',
+      },
+      { name: 'Morning bun', note: 'orange zest, cinnamon sugar', price: '$5.5' },
+    ],
+  },
+  {
+    id: 'breads',
+    title: 'Bread',
+    subtitle: '7:30 AM until sold out',
+    items: [
+      { name: 'Baguette', price: '$6' },
+      { name: 'Demi baguette', price: '$4' },
+      { name: 'Levain sourdough', price: '$9' },
+      { name: 'Moisson', note: 'wheat, rye, sunflower seeds', price: '$9' },
+      { name: 'Fendu', note: 'available friday-sunday', price: '$9' },
     ],
   },
   {
     id: 'pastries',
     title: 'Pastries',
+    subtitle: '9:00 AM until sold out',
     items: [
-      { name: 'Fruit tart', note: 'Seasonal', price: '$6.50' },
-      { name: 'Éclair', note: 'Classic', price: '$6' },
-      { name: 'Financier', price: '$4' },
-      { name: 'Daily pastry', note: 'Ask in store', price: '$5' },
+      { name: 'Canelé', price: '$4' },
+      { name: 'Financier', note: 'brown butter, almond', price: '$4' },
+      { name: 'Apple pie danish', price: '$6.5' },
+      { name: 'Orange almond cake', note: 'olive oil, candied orange (GF)', price: '$6' },
+      { name: 'Seasonal gâteau', note: 'slice, changes weekly', price: '$7.5' },
     ],
   },
   {
     id: 'sandwiches',
     title: 'Sandwiches',
-    subtitle: 'Served until 3pm',
+    subtitle: '11:00 AM until sold out',
     items: [
-      { name: 'Jambon beurre', note: 'Ham & butter', price: '$12' },
-      { name: 'Vegetarian', note: 'Seasonal', price: '$11' },
-      { name: 'Chicken', note: 'Rotates', price: '$12' },
+      { name: 'Jambon beurre', note: 'ham, cultured butter, cornichons, baguette', price: '$12' },
+      { name: 'Turkey pesto', note: 'basil pesto, arugula, levain', price: '$13' },
+      { name: 'Vegan quiche', note: 'leek, squash, herbs (V)', price: '$11' },
+      { name: 'Quiche lorraine', note: 'slice', price: '$11' },
     ],
   },
 ]
@@ -70,7 +79,7 @@ export function renderMenuPage(): HTMLElement {
 
   const lead = document.createElement('p')
   lead.className = 'lead'
-  lead.textContent = 'Curated selection. Items may vary daily.'
+  lead.textContent = '7am - 3pm or until sold out'
 
   const jumps = document.createElement('nav')
   jumps.className = 'menuJumps'

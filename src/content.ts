@@ -9,6 +9,12 @@ export const EMAIL_DISPLAY = 'hello@limprimerie.bakery'
 
 export const TIMEZONE = 'America/New_York'
 
+// The operational statement, repeated on Visit and Contact — the site's core message.
+export const POLICY_PRODUCTION =
+  'Our daily production is devoted entirely to our retail customers. Everything we bake is available in store on a first-come first-served basis.'
+export const POLICY_NO_PREORDERS =
+  'We do not offer pre-orders, catering, or wholesale.'
+
 export type StoreHours = {
   openHour: number
   openMinute: number
@@ -34,7 +40,7 @@ export const LOCATIONS: ReadonlyArray<Location> = [
     name: 'Bushwick',
     addressDisplay: '1524 Myrtle Avenue, Bushwick',
     addressQuery: '1524 Myrtle Avenue, Brooklyn, NY',
-    hoursDisplay: '7am-6pm daily',
+    hoursDisplay: '7am - 6pm or until sold out',
     hours: { openHour: 7, openMinute: 0, closeHour: 18, closeMinute: 0 },
     photo: '/assets/food/L_imprimerie_Hero_2880x2304.jpg',
     photoAlt: 'Bread and pastries from L’imprimerie, Bushwick',
@@ -44,7 +50,7 @@ export const LOCATIONS: ReadonlyArray<Location> = [
     name: 'Clinton Hill',
     addressDisplay: '204 DeKalb Avenue, Clinton Hill',
     addressQuery: '204 DeKalb Avenue, Brooklyn, NY',
-    hoursDisplay: '7:30am-5pm daily',
+    hoursDisplay: '7:30am - 5pm or until sold out',
     hours: { openHour: 7, openMinute: 30, closeHour: 17, closeMinute: 0 },
     photo: '/assets/food/L_imprimerie_Hero_2880x2304(1).jpg',
     photoAlt: 'Bread and pastries from L’imprimerie, Clinton Hill',
@@ -60,33 +66,43 @@ export const DELIVERY_PARTNERS: ReadonlyArray<{
   { name: 'Grubhub', href: 'https://www.grubhub.com/' },
 ]
 
-// TODO: Replace with real questions the bakery actually gets asked.
+// TODO: Replace with real questions the bakery actually gets asked, and verify every time quoted.
 export const FAQS: ReadonlyArray<{ question: string; answer: string }> = [
   {
-    question: 'Do you take pre-orders or catering requests?',
+    question: 'Can we place a pre-order for pickup or delivery?',
     answer:
-      'Not at this time — everything we bake is available in store, first-come first-served.',
+      'We do not offer pre-orders, catering, or wholesale. Everything is baked on-premises daily and sold exclusively on a first-come, first-served basis.',
   },
   {
-    question: 'Do you have gluten-free or vegan options?',
+    question: 'What time should we arrive?',
     answer:
-      'A few rotate through the pastry case daily — ask in store, since availability changes.',
+      'Viennoiserie and breads are on the counter by 7:30AM. Pastries follow at 9AM. Sandwiches come out at 11AM. If you are coming for something specific, arrive close to those times to avoid disappointment.',
   },
   {
-    question: 'Is there seating?',
-    answer: 'Limited counter seating at both locations. Plenty of nearby spots to take it to go.',
+    question: 'What time do you sell out?',
+    answer:
+      'Sell out times vary by day. Croissants are usually gone by noon and sandwiches by 2PM, earlier on Fridays, Saturdays and Sundays. We close once we are sold out of everything.',
   },
   {
-    question: 'Do you accept walk-ins only?',
-    answer: 'Yes — no reservations needed. Lines are shortest right after opening.',
+    question: 'Why not just bake more?',
+    answer:
+      'Our doughs are laminated and proofed over three days, and both shops are small. We use every inch we have, and we will always bake less rather than bake worse.',
+  },
+  {
+    question: 'Do you allow dogs inside?',
+    answer:
+      'No. The NYC Department of Health permits only ADA certified service animals inside a food service establishment. Leashed dogs are welcome to wait outside.',
   },
 ]
 
-// TODO: Replace with real merch and pricing.
+// TODO: Replace with real merch, colorways, and pricing.
 export const MERCH_ITEMS: ReadonlyArray<{ name: string; note?: string; price: string }> = [
-  { name: 'Canvas tote bag', note: 'Natural canvas, printed logo', price: '$18' },
-  { name: 'Ceramic mug', note: '12oz, matte glaze', price: '$22' },
-  { name: 'Logo cap', note: 'Adjustable, cream', price: '$28' },
-  { name: 'T-shirt', note: 'Heavyweight cotton', price: '$32' },
+  { name: "L'imprimerie Cap — Ink Navy / Cream", price: '$30.00' },
+  { name: 'Presse Tote — Natural / Rust', price: '$28.00' },
+  { name: 'Presse T-Shirt — Cream / Ink Navy', note: 'M, L, XL', price: '$32.00' },
+  { name: 'Presse Crewneck — Ink Navy', note: 'M, L, XL', price: '$58.00' },
+  { name: "L'imprimerie Bandana — Rust / Cream", price: '$15.00' },
 ]
+
+export const MERCH_POLICY = 'We are unable to process returns or exchanges. All sales are final.'
 

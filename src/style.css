@@ -566,6 +566,39 @@ button:focus-visible {
   font-size: 13px;
 }
 
+/* ---------- policy statements (Visit, Contact, Merch, Gift Cards) ---------- */
+
+.policyBlock {
+  display: grid;
+  gap: var(--space-3);
+  max-width: 56ch;
+  margin: 0 auto clamp(var(--space-6), 5vw, var(--space-8));
+}
+
+.policyBlock--lead {
+  margin-top: var(--space-2);
+}
+
+.policyBlock__line {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  line-height: 1.7;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.policyBlock__line--strong {
+  font-weight: 700;
+  color: var(--fg);
+}
+
+.merchPolicy {
+  max-width: 56ch;
+  margin: clamp(var(--space-7), 6vw, var(--space-8)) auto 0;
+}
+
 /* ---------- faq page ---------- */
 
 .faqList {
@@ -578,9 +611,10 @@ button:focus-visible {
 .faqItem__question {
   margin: 0 0 var(--space-2);
   font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 18px;
-  letter-spacing: -0.01em;
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: -0.005em;
+  text-transform: uppercase;
 }
 
 .faqItem__answer {
@@ -612,7 +646,8 @@ button:focus-visible {
 }
 
 .contactField input,
-.contactField textarea {
+.contactField textarea,
+.contactField select {
   font: inherit;
   font-size: 15px;
   padding: 12px 14px;
@@ -624,7 +659,8 @@ button:focus-visible {
 }
 
 .contactField input:focus,
-.contactField textarea:focus {
+.contactField textarea:focus,
+.contactField select:focus {
   outline: 2px solid var(--focus);
   outline-offset: 1px;
 }
