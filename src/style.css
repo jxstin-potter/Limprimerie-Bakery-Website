@@ -622,6 +622,13 @@ button:focus-visible {
   font-size: 16px;
 }
 
+.menuItem__price {
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
 .menuItem__note {
   color: var(--muted);
   font-size: 13px;

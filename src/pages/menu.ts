@@ -1,6 +1,7 @@
 type MenuItem = {
   name: string
   note?: string
+  price: string
   photo: string
   alt: string
 }
@@ -13,7 +14,7 @@ type MenuCategory = {
 
 const FOOD = '/assets/food'
 
-// TODO: Replace with the bakery’s actual curated selection.
+// TODO: Replace with the bakery’s actual curated selection and prices.
 const CATEGORIES: MenuCategory[] = [
   {
     id: 'breads',
@@ -22,24 +23,28 @@ const CATEGORIES: MenuCategory[] = [
       {
         name: 'Baguette',
         note: 'Classic French loaf',
+        price: '$6',
         photo: `${FOOD}/L_imprimerie_Baguette_2880x2304.jpg`,
         alt: 'Baguette',
       },
       {
         name: 'Country loaf',
         note: 'Hearty, everyday',
+        price: '$9',
         photo: `${FOOD}/L_imprimerie_Moisson_2880x2304.jpg`,
         alt: 'Moisson country loaf',
       },
       {
         name: 'Sourdough',
         note: 'Naturally leavened',
+        price: '$9',
         photo: `${FOOD}/L_imprimerie_Levain_2880x2304.jpg`,
         alt: 'Levain sourdough loaf',
       },
       {
         name: 'Seasonal loaf',
         note: 'Rotates',
+        price: '$9',
         photo: `${FOOD}/L_imprimerie_Fendu_2880x2304.jpg`,
         alt: 'Fendu split loaf',
       },
@@ -51,22 +56,26 @@ const CATEGORIES: MenuCategory[] = [
     items: [
       {
         name: 'Croissant',
+        price: '$4.50',
         photo: `${FOOD}/L_imprimerie_PlainCroissant_2880x2304.jpg`,
         alt: 'Plain croissant',
       },
       {
         name: 'Pain au chocolat',
+        price: '$5',
         photo: `${FOOD}/L_imprimerie_ChocolateCroissant_2880x2304.jpg`,
         alt: 'Chocolate croissant',
       },
       {
         name: 'Almond croissant',
+        price: '$5.50',
         photo: `${FOOD}/L_imprimerie_AlmondCroissant_2880x2304.jpg`,
         alt: 'Almond croissant',
       },
       {
         name: 'Seasonal viennoiserie',
         note: 'Rotates',
+        price: '$5.50',
         photo: `${FOOD}/L_imprimerie_MorningBun_2880x2304.jpg`,
         alt: 'Morning bun',
       },
@@ -79,23 +88,27 @@ const CATEGORIES: MenuCategory[] = [
       {
         name: 'Fruit tart',
         note: 'Seasonal',
+        price: '$6.50',
         photo: `${FOOD}/L_imprimerie_ApplePieDanish_2880x2304.jpg`,
         alt: 'Apple pie danish',
       },
       {
         name: 'Éclair',
         note: 'Classic',
+        price: '$6',
         photo: `${FOOD}/L_imprimerie_Canele_2880x2304.jpg`,
         alt: 'Canelé',
       },
       {
         name: 'Financier',
+        price: '$4',
         photo: `${FOOD}/L_imprimerie_OrangeAlmondCake_2880x2304.jpg`,
         alt: 'Orange almond cake',
       },
       {
         name: 'Daily pastry',
         note: 'Ask in store',
+        price: '$5',
         photo: `${FOOD}/L_imprimerie_SeasonalGateauCake_2880x2304.jpg`,
         alt: 'Seasonal gâteau cake',
       },
@@ -108,18 +121,21 @@ const CATEGORIES: MenuCategory[] = [
       {
         name: 'Jambon beurre',
         note: 'Ham & butter',
+        price: '$12',
         photo: `${FOOD}/L_imprimerie_JambonBeurre_2880x2304.jpg`,
         alt: 'Jambon beurre sandwich',
       },
       {
         name: 'Vegetarian',
         note: 'Seasonal',
+        price: '$11',
         photo: `${FOOD}/L_imprimerie_VeganQuiche_2880x2304.jpg`,
         alt: 'Vegan quiche',
       },
       {
         name: 'Chicken',
         note: 'Rotates',
+        price: '$12',
         photo: `${FOOD}/L_imprimerie_TurkeyPestoOnSourdough_2880x2304.jpg`,
         alt: 'Turkey pesto on sourdough',
       },
@@ -216,7 +232,11 @@ export function renderMenuPage(): HTMLElement {
       name.className = 'menuItem__name'
       name.textContent = item.name
 
-      row.appendChild(name)
+      const price = document.createElement('span')
+      price.className = 'menuItem__price'
+      price.textContent = item.price
+
+      row.append(name, price)
       li.append(photo, row)
 
       if (item.note) {
