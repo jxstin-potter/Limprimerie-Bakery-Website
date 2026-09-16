@@ -1,26 +1,24 @@
 :root {
   color-scheme: light;
 
-  /* butter paper (ground) */
-  --bg: #f8ecd6;
-  --bg-raised: #fff8ea;
-  /* ink */
-  --fg: #241f19;
-  --muted: #6e6455;
+  /* ground */
+  --bg: #dcf3c6;
+  --bg-raised: #e8f7d8;
+  /* ink — also used for secondary text; hierarchy comes from face and size, not color */
+  --fg: #004b3b;
+  --muted: #004b3b;
   /* hairline */
-  --hairline: #e3d5b3;
-  /* rust — primary accent */
-  --accent: #c1442c;
-  --accent-ink: #fff8ea;
-  --accent-tint: #f3ded2;
-  --focus: #c1442c;
-  /* mustard — secondary accent */
-  --gold: #e0a530;
-  /* pale powder blue — flat page ground */
-  --menu-bg: #dde5ec;
-  --menu-ink: #21344c;
-  --menu-muted: #5c7185;
-  --hairline-header: #c4d0da;
+  --hairline: #bfdfa6;
+  /* deep green — primary accent (buttons, links) */
+  --accent: #0d8453;
+  --accent-ink: #ffffff;
+  --accent-tint: #c3e7ac;
+  --focus: #004b3b;
+  /* flat page ground */
+  --menu-bg: #dcf3c6;
+  --menu-ink: #004b3b;
+  --menu-muted: #004b3b;
+  --hairline-header: #bfdfa6;
 
   --font-display: 'Archivo Black', 'Poppins', sans-serif;
 
@@ -226,7 +224,7 @@ button:focus-visible {
 }
 
 .siteHeader__menuButton:hover {
-  border-color: var(--gold);
+  border-color: var(--accent);
 }
 
 .mobileMenu {
@@ -268,7 +266,7 @@ button:focus-visible {
 }
 
 .mobileMenu__close:hover {
-  border-color: var(--gold);
+  border-color: var(--accent);
 }
 
 .mobileMenu__close span {
@@ -419,12 +417,12 @@ button:focus-visible {
   justify-content: center;
   gap: var(--space-3);
   padding: clamp(var(--space-4), 4vw, var(--space-6));
-  /* scrim keeps the overlaid text legible whatever the photo does */
+  /* light wash keeps the dark green overlay text legible over any photo */
   background: linear-gradient(
     180deg,
-    rgba(12, 22, 36, 0.12) 0%,
-    rgba(12, 22, 36, 0.58) 60%,
-    rgba(12, 22, 36, 0.72) 100%
+    rgba(220, 243, 198, 0.05) 0%,
+    rgba(220, 243, 198, 0.42) 48%,
+    rgba(220, 243, 198, 0.66) 100%
   );
   border-radius: 17px;
 }
@@ -437,22 +435,21 @@ button:focus-visible {
   line-height: 1;
   letter-spacing: normal;
   text-transform: uppercase;
-  color: var(--accent-ink);
+  color: var(--menu-ink);
 }
 
 .locationCard__address {
   font-family: var(--font-display);
   font-size: clamp(13px, 1.4vw, 16px);
   text-transform: uppercase;
-  color: var(--accent-ink);
+  color: var(--accent);
   text-decoration: underline;
   text-underline-offset: 4px;
-  text-decoration-color: rgba(255, 248, 234, 0.6);
-  transition: text-decoration-color 200ms ease;
+  transition: color 200ms ease;
 }
 
 .locationCard__address:hover {
-  text-decoration-color: var(--accent-ink);
+  color: var(--menu-ink);
 }
 
 /* ---------- delivery page ---------- */
@@ -621,10 +618,10 @@ button:focus-visible {
   padding-block: clamp(var(--space-7), 8vw, var(--space-9));
   /* re-theme every component below (buttons, links, hairlines, cards) for this ground */
   --bg: var(--menu-bg);
-  --bg-raised: #eef1f4;
+  --bg-raised: #e8f7d8;
   --fg: var(--menu-ink);
   --muted: var(--menu-muted);
-  --hairline: #c4d0da;
+  --hairline: #bfdfa6;
 }
 
 .container--narrow {
