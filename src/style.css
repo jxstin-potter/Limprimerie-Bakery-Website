@@ -15,18 +15,18 @@
   --accent-ink: #fff8ea;
   --accent-tint: #f3ded2;
   --focus: #c1442c;
-  /* deep bakery green — color-block panels (header/footer/hero) */
-  --panel: #26402f;
+  /* deep ink navy — color-block panels (header/footer/hero); ties to "l'imprimerie", the print shop */
+  --panel: #1f3350;
   --panel-ink: #f8ecd6;
-  --panel-muted: #b9c9ba;
-  --panel-hairline: #3c5b47;
+  --panel-muted: #aebccc;
+  --panel-hairline: #33496b;
   /* mustard — secondary accent */
   --gold: #e0a530;
   --gold-ink: #241f19;
-  /* pale sage — menu page ground (radiobakery.nyc's own menu page) */
-  --menu-bg: #dfe6d3;
-  --menu-ink: #223321;
-  --menu-muted: #62785f;
+  /* pale powder blue — flat page ground */
+  --menu-bg: #dde5ec;
+  --menu-ink: #21344c;
+  --menu-muted: #5c7185;
 
   --font-display: 'Bricolage Grotesque', 'Zen Kaku Gothic New', sans-serif;
 
@@ -565,7 +565,7 @@ button:focus-visible {
   font-size: 13px;
 }
 
-/* ---------- flat sage pages, after radiobakery.nyc (whole site is one flat color, not just the homepage) ---------- */
+/* ---------- flat powder-blue pages, structured after radiobakery.nyc's own site (whole site is one flat color, not just the homepage) ---------- */
 
 .page {
   background: var(--menu-bg);
@@ -573,11 +573,11 @@ button:focus-visible {
   padding-block: clamp(var(--space-7), 8vw, var(--space-9));
   /* re-theme every component below (buttons, links, hairlines, cards) for this ground */
   --bg: var(--menu-bg);
-  --bg-raised: #eef2e5;
+  --bg-raised: #eef1f4;
   --fg: var(--menu-ink);
   --muted: var(--menu-muted);
   --faint: var(--menu-muted);
-  --hairline: #c9d6bd;
+  --hairline: #c4d0da;
 }
 
 .container--narrow {
