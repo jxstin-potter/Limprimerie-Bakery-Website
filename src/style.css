@@ -27,6 +27,7 @@
   --menu-bg: #dde5ec;
   --menu-ink: #21344c;
   --menu-muted: #5c7185;
+  --hairline-header: #c4d0da;
 
   --font-display: 'Bricolage Grotesque', 'Zen Kaku Gothic New', sans-serif;
 
@@ -149,10 +150,7 @@ button:focus-visible {
 /* ---------- header ---------- */
 
 .siteHeader {
-  position: sticky;
-  top: 0;
-  background: var(--panel);
-  border-bottom: 3px solid var(--accent);
+  background: var(--menu-bg);
   z-index: 50;
 }
 
@@ -177,7 +175,7 @@ button:focus-visible {
   font-weight: 800;
   font-size: 26px;
   letter-spacing: -0.02em;
-  color: var(--panel-ink);
+  color: var(--menu-ink);
 }
 
 .siteHeader__brand span {
@@ -185,7 +183,7 @@ button:focus-visible {
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--accent);
 }
 
 .siteHeader__nav {
@@ -200,7 +198,7 @@ button:focus-visible {
   font-size: 16px;
   font-weight: 600;
   letter-spacing: -0.01em;
-  color: var(--panel-muted);
+  color: var(--menu-muted);
   padding: 8px 18px;
   border-radius: 999px;
   border: 1px solid transparent;
@@ -208,19 +206,18 @@ button:focus-visible {
 }
 
 .siteHeader__nav a:hover {
-  color: var(--panel-ink);
-  border-color: var(--panel-hairline);
+  color: var(--menu-ink);
 }
 
 .siteHeader__nav a[aria-current='page'] {
-  color: var(--panel-ink);
+  color: var(--accent-ink);
   background: var(--accent);
 }
 
 .siteHeader__menuButton {
   appearance: none;
   border-radius: 999px;
-  border: 1px solid var(--panel-hairline);
+  border: 1px solid var(--hairline-header);
   background: transparent;
   padding: var(--space-2) var(--space-4);
   cursor: pointer;
@@ -229,7 +226,7 @@ button:focus-visible {
   font-size: 15px;
   font-weight: 600;
   letter-spacing: -0.01em;
-  color: var(--panel-ink);
+  color: var(--menu-ink);
   transition: border-color 200ms ease;
 }
 
@@ -246,7 +243,7 @@ button:focus-visible {
 .mobileMenu__panel {
   position: relative;
   height: 100%;
-  background: var(--panel);
+  background: var(--menu-bg);
   border-left: 3px solid var(--accent);
   padding: var(--space-6) var(--space-6);
   max-width: 360px;
@@ -264,11 +261,11 @@ button:focus-visible {
   display: grid;
   place-items: center;
   border-radius: 999px;
-  border: 1px solid var(--panel-hairline);
+  border: 1px solid var(--hairline-header);
   background: transparent;
   cursor: pointer;
   font: inherit;
-  color: var(--panel-ink);
+  color: var(--menu-ink);
   line-height: 1;
   padding: 0;
   transition: border-color 200ms ease;
@@ -296,12 +293,12 @@ button:focus-visible {
   font-size: 24px;
   font-weight: 700;
   letter-spacing: -0.02em;
-  color: var(--panel-ink);
+  color: var(--menu-ink);
   border-radius: 999px;
 }
 
 .mobileMenu__nav a[aria-current='page'] {
-  color: var(--panel-ink);
+  color: var(--accent-ink);
   background: var(--accent);
 }
 
