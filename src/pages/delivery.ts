@@ -5,7 +5,7 @@ export function renderDeliveryPage(): HTMLElement {
   section.className = 'page page--delivery'
 
   const container = document.createElement('div')
-  container.className = 'container'
+  container.className = 'container container--narrow'
 
   const title = document.createElement('h1')
   title.className = 'pageTitle'

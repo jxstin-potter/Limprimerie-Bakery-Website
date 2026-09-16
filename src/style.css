@@ -117,7 +117,7 @@ button:focus-visible {
   padding-block: clamp(var(--space-7), 8vw, var(--space-9));
 }
 
-.main:has(.page--menu) {
+.main:has(.page) {
   padding-block: 0;
 }
 
@@ -128,6 +128,7 @@ button:focus-visible {
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 0.98;
+  text-transform: uppercase;
   text-wrap: balance;
 }
 
@@ -138,6 +139,7 @@ button:focus-visible {
 
 .lead {
   margin: 0 0 var(--space-6);
+  margin-inline: auto;
   font-size: 17px;
   line-height: 1.7;
   color: var(--muted);
@@ -428,38 +430,42 @@ button:focus-visible {
 }
 
 .pageHero {
-  margin: clamp(var(--space-7), 6vw, var(--space-9)) 0;
+  margin: var(--space-6) 0 clamp(var(--space-7), 6vw, var(--space-9));
 }
 
 .pageHero .photo {
   width: 100%;
   max-width: 640px;
   aspect-ratio: 16 / 10;
+  margin-inline: auto;
 }
 
 /* ---------- visit page ---------- */
 
 .visitAddress {
   margin: 0 0 var(--space-5);
-  font-size: 20px;
-  font-weight: 500;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
   color: var(--fg);
 }
 
 .visitActions {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: var(--space-3);
-  margin-bottom: var(--space-6);
+  margin-bottom: var(--space-3);
 }
 
 .visitHoursRow {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: var(--space-4);
   align-items: center;
-  padding-top: var(--space-5);
-  border-top: 1px solid var(--hairline);
+  margin-bottom: var(--space-2);
 }
 
 .visitHoursText {
@@ -524,7 +530,8 @@ button:focus-visible {
 .deliveryChooser {
   display: grid;
   gap: var(--space-4);
-  max-width: 520px;
+  max-width: 480px;
+  margin-inline: auto;
 }
 
 .deliveryLinks__list {
@@ -558,12 +565,19 @@ button:focus-visible {
   font-size: 13px;
 }
 
-/* ---------- menu page: flat sage price list, after radiobakery.nyc's own menu page ---------- */
+/* ---------- flat sage pages, after radiobakery.nyc (whole site is one flat color, not just the homepage) ---------- */
 
-.page--menu {
+.page {
   background: var(--menu-bg);
   color: var(--menu-ink);
   padding-block: clamp(var(--space-7), 8vw, var(--space-9));
+  /* re-theme every component below (buttons, links, hairlines, cards) for this ground */
+  --bg: var(--menu-bg);
+  --bg-raised: #eef2e5;
+  --fg: var(--menu-ink);
+  --muted: var(--menu-muted);
+  --faint: var(--menu-muted);
+  --hairline: #c9d6bd;
 }
 
 .container--narrow {
@@ -572,14 +586,10 @@ button:focus-visible {
   text-align: center;
 }
 
-.pageTitle--menu {
-  text-transform: uppercase;
-  color: var(--menu-ink);
-}
-
-.lead--menu {
+.container--medium {
+  width: min(760px, calc(100% - 2 * clamp(20px, 6vw, 72px)));
   margin-inline: auto;
-  color: var(--menu-muted);
+  text-align: center;
 }
 
 .menuJumps {
@@ -685,13 +695,6 @@ button:focus-visible {
 .menuUtils .textLink {
   margin-top: 0;
   margin-inline: auto;
-  color: var(--menu-muted);
-  border-color: var(--menu-muted);
-}
-
-.menuUtils .textLink:hover {
-  color: var(--menu-ink);
-  border-color: var(--menu-ink);
 }
 
 /* ---------- responsive ---------- */

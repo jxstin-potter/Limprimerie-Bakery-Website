@@ -65,11 +65,11 @@ export function renderMenuPage(): HTMLElement {
   container.className = 'container container--narrow'
 
   const title = document.createElement('h1')
-  title.className = 'pageTitle pageTitle--menu'
+  title.className = 'pageTitle'
   title.textContent = 'Menu'
 
   const lead = document.createElement('p')
-  lead.className = 'lead lead--menu'
+  lead.className = 'lead'
   lead.textContent = 'Curated selection. Items may vary daily.'
 
   const jumps = document.createElement('nav')

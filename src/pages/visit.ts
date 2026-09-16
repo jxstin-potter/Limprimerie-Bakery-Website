@@ -12,35 +12,11 @@ export function renderVisitPage(): HTMLElement {
   section.className = 'page page--visit'
 
   const container = document.createElement('div')
-  container.className = 'container'
+  container.className = 'container container--medium'
 
   const title = document.createElement('h1')
   title.className = 'pageTitle'
   title.textContent = 'Visit us!'
-
-  const address = document.createElement('p')
-  address.className = 'visitAddress'
-  address.textContent = ADDRESS_DISPLAY
-
-  const actions = document.createElement('div')
-  actions.className = 'visitActions'
-
-  const directions = document.createElement('a')
-  directions.className = 'button button--primary'
-  directions.href = getDirectionsUrl(ADDRESS_QUERY)
-  directions.target = '_blank'
-  directions.rel = 'noopener noreferrer'
-  directions.textContent = 'Get directions'
-
-  const delivery = document.createElement('a')
-  delivery.className = 'button button--secondary'
-  delivery.href = '#/delivery'
-  delivery.textContent = 'Find us on delivery apps'
-
-  actions.append(directions, delivery)
-
-  const hoursRow = document.createElement('div')
-  hoursRow.className = 'visitHoursRow'
 
   const hours = getOpenNow(
     {
@@ -52,6 +28,9 @@ export function renderVisitPage(): HTMLElement {
     },
     new Date(),
   )
+
+  const hoursRow = document.createElement('div')
+  hoursRow.className = 'visitHoursRow'
 
   const pill = document.createElement('span')
   pill.className = `statusPill ${hours.isOpen ? 'statusPill--open' : 'statusPill--closed'}`
@@ -79,6 +58,27 @@ export function renderVisitPage(): HTMLElement {
   heroPhoto.appendChild(heroImg)
   hero.appendChild(heroPhoto)
 
+  const address = document.createElement('p')
+  address.className = 'visitAddress'
+  address.textContent = ADDRESS_DISPLAY
+
+  const actions = document.createElement('div')
+  actions.className = 'visitActions'
+
+  const directions = document.createElement('a')
+  directions.className = 'button button--primary'
+  directions.href = getDirectionsUrl(ADDRESS_QUERY)
+  directions.target = '_blank'
+  directions.rel = 'noopener noreferrer'
+  directions.textContent = 'Get directions'
+
+  actions.appendChild(directions)
+
+  const delivery = document.createElement('a')
+  delivery.className = 'textLink'
+  delivery.href = '#/delivery'
+  delivery.textContent = 'Prefer delivery? Find us on delivery apps'
+
   const mapWrap = document.createElement('div')
   mapWrap.className = 'mapWrap'
 
@@ -100,8 +100,7 @@ export function renderVisitPage(): HTMLElement {
 
   mapWrap.append(iframe, mapFallback)
 
-  container.append(title, address, actions, hoursRow, hero, mapWrap)
+  container.append(title, hoursRow, hero, address, actions, delivery, mapWrap)
   section.appendChild(container)
   return section
 }
-
