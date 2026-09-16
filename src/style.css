@@ -151,12 +151,11 @@ button:focus-visible {
 
 .siteHeader {
   background: var(--menu-bg);
-  z-index: 50;
 }
 
 .siteHeader__inner {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: var(--space-4);
   padding: var(--space-5) 0;
@@ -188,7 +187,10 @@ button:focus-visible {
 
 .siteHeader__nav {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
   gap: var(--space-2);
+  padding-top: 2px;
 }
 
 .siteHeader__nav a {
@@ -237,6 +239,7 @@ button:focus-visible {
 .mobileMenu {
   position: fixed;
   inset: 0;
+  z-index: 100;
   background: rgba(20, 16, 11, 0.5);
 }
 
@@ -437,32 +440,52 @@ button:focus-visible {
   margin-inline: auto;
 }
 
-/* ---------- visit page ---------- */
+/* ---------- visit page: two-location grid, after radiobakery.nyc's homepage ---------- */
 
-.visitAddress {
-  margin: 0 0 var(--space-5);
-  font-family: var(--font-display);
-  font-size: 22px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  color: var(--fg);
+.locationGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-6);
+  text-align: left;
+  margin: clamp(var(--space-6), 5vw, var(--space-8)) 0 var(--space-7);
 }
 
-.visitActions {
+.locationCard {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--space-3);
-  margin-bottom: var(--space-3);
+  flex-direction: column;
+  gap: var(--space-2);
 }
 
-.visitHoursRow {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--space-4);
-  align-items: center;
+.locationCard__photo {
+  aspect-ratio: 4 / 3;
   margin-bottom: var(--space-2);
+}
+
+.locationCard__name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 26px;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+.locationCard__address {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.locationCard__hours {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin: var(--space-1) 0 var(--space-2);
+}
+
+.locationCard .button {
+  align-self: flex-start;
 }
 
 .visitHoursText {
@@ -501,25 +524,6 @@ button:focus-visible {
 
 .statusPill--open::before {
   background: var(--accent);
-}
-
-.mapWrap {
-  display: grid;
-  gap: var(--space-3);
-  margin-top: clamp(var(--space-7), 6vw, var(--space-9));
-}
-
-.mapFrame {
-  width: 100%;
-  height: 420px;
-  border-radius: 20px;
-  border: 3px solid var(--fg);
-}
-
-.mapFallback {
-  color: var(--muted);
-  width: fit-content;
-  font-size: 14px;
 }
 
 /* ---------- delivery page ---------- */
@@ -562,6 +566,88 @@ button:focus-visible {
   font-size: 13px;
 }
 
+/* ---------- faq page ---------- */
+
+.faqList {
+  display: grid;
+  gap: var(--space-6);
+  text-align: left;
+  margin-bottom: clamp(var(--space-7), 6vw, var(--space-9));
+}
+
+.faqItem__question {
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+}
+
+.faqItem__answer {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ---------- contact page ---------- */
+
+.contactForm {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 480px;
+  margin-inline: auto;
+  text-align: left;
+}
+
+.contactField {
+  display: grid;
+  gap: 6px;
+}
+
+.contactField__label {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.contactField input,
+.contactField textarea {
+  font: inherit;
+  font-size: 15px;
+  padding: 12px 14px;
+  background: var(--bg-raised);
+  color: var(--fg);
+  border: 1px solid var(--hairline);
+  border-radius: 10px;
+  resize: vertical;
+}
+
+.contactField input:focus,
+.contactField textarea:focus {
+  outline: 2px solid var(--focus);
+  outline-offset: 1px;
+}
+
+.contactForm .button {
+  justify-self: start;
+}
+
+.contactPhone {
+  margin: var(--space-5) auto 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* ---------- gift cards page ---------- */
+
+.giftCardActions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+}
+
 /* ---------- flat powder-blue pages, structured after radiobakery.nyc's own site (whole site is one flat color, not just the homepage) ---------- */
 
 .page {
@@ -583,9 +669,7 @@ button:focus-visible {
   text-align: center;
 }
 
-.container--medium {
-  width: min(760px, calc(100% - 2 * clamp(20px, 6vw, 72px)));
-  margin-inline: auto;
+.container--center {
   text-align: center;
 }
 
@@ -702,9 +786,6 @@ button:focus-visible {
   }
   .siteHeader__nav--desktop {
     display: none;
-  }
-  .mapFrame {
-    height: 320px;
   }
 }
 

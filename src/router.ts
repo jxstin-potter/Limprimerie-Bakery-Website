@@ -1,17 +1,28 @@
-export type Route = '/visit' | '/menu' | '/delivery'
+export type Route =
+  | '/visit'
+  | '/menu'
+  | '/delivery'
+  | '/faq'
+  | '/contact'
+  | '/gift-cards'
+  | '/merch'
 
 const DEFAULT_ROUTE: Route = '/visit'
 const VALID_ROUTES: ReadonlySet<Route> = new Set<Route>([
   '/visit',
   '/menu',
   '/delivery',
+  '/faq',
+  '/contact',
+  '/gift-cards',
+  '/merch',
 ])
 
 function parseRouteFromHash(hash: string): Route | null {
   if (!hash) return null
   if (!hash.startsWith('#')) return null
 
-  // Expected forms: "#/visit", "#/menu", "#/delivery"
+  // Expected forms: "#/visit", "#/menu", "#/delivery", "#/faq", "#/contact", "#/gift-cards", "#/merch"
   const path = hash.slice(1)
   if (!path) return null
 

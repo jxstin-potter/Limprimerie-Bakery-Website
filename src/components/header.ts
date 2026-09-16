@@ -5,6 +5,10 @@ const ROUTES: Array<{ route: Route; label: string }> = [
   { route: '/menu', label: 'Menu' },
   { route: '/visit', label: 'Visit' },
   { route: '/delivery', label: 'Order Online' },
+  { route: '/gift-cards', label: 'Gift Cards' },
+  { route: '/faq', label: 'FAQ' },
+  { route: '/merch', label: 'Merch' },
+  { route: '/contact', label: 'Contact' },
 ]
 
 function routeHref(route: Route) {

@@ -14,9 +14,3 @@ export function getDirectionsUrl(destination: string): string {
   return `https://www.google.com/maps/dir/?api=1&destination=${encoded}`
 }
 
-export function getGoogleEmbedUrl(query: string): string {
-  // Keyless embed (query-based). If you later need a pinned/place embed, replace with the official embed URL.
-  const encoded = encodeURIComponent(query)
-  return `https://www.google.com/maps?q=${encoded}&output=embed`
-}
-

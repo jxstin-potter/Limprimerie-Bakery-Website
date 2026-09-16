@@ -1,10 +1,5 @@
-import {
-  ADDRESS_DISPLAY,
-  ADDRESS_QUERY,
-  HOURS_DISPLAY,
-  TIMEZONE,
-} from '../content'
-import { getDirectionsUrl, getGoogleEmbedUrl } from '../utils/maps'
+import { LOCATIONS, TIMEZONE } from '../content'
+import { getDirectionsUrl } from '../utils/maps'
 import { getOpenNow } from '../utils/time'
 
 export function renderVisitPage(): HTMLElement {
@@ -12,95 +7,76 @@ export function renderVisitPage(): HTMLElement {
   section.className = 'page page--visit'
 
   const container = document.createElement('div')
-  container.className = 'container container--medium'
+  container.className = 'container container--center'
 
   const title = document.createElement('h1')
   title.className = 'pageTitle'
   title.textContent = 'Visit us!'
 
-  const hours = getOpenNow(
-    {
-      tz: TIMEZONE,
-      openHour: 7,
-      openMinute: 0,
-      closeHour: 18,
-      closeMinute: 0,
-    },
-    new Date(),
-  )
+  const lead = document.createElement('p')
+  lead.className = 'lead'
+  lead.textContent =
+    'Two Brooklyn locations. Everything we bake is available in store, first-come first-served.'
 
-  const hoursRow = document.createElement('div')
-  hoursRow.className = 'visitHoursRow'
+  const grid = document.createElement('div')
+  grid.className = 'locationGrid'
 
-  const pill = document.createElement('span')
-  pill.className = `statusPill ${hours.isOpen ? 'statusPill--open' : 'statusPill--closed'}`
-  pill.textContent = hours.isOpen ? 'Open now' : 'Closed'
+  for (const loc of LOCATIONS) {
+    const card = document.createElement('div')
+    card.className = 'locationCard'
 
-  const hoursText = document.createElement('span')
-  hoursText.className = 'visitHoursText'
-  hoursText.textContent = HOURS_DISPLAY
+    const photo = document.createElement('div')
+    photo.className = 'photo locationCard__photo'
 
-  hoursRow.append(pill, hoursText)
+    const img = document.createElement('img')
+    img.src = loc.photo
+    img.alt = loc.photoAlt
+    img.loading = 'lazy'
+    img.width = 1200
+    img.height = 900
 
-  const hero = document.createElement('div')
-  hero.className = 'pageHero'
+    photo.appendChild(img)
 
-  const heroPhoto = document.createElement('div')
-  heroPhoto.className = 'photo'
+    const name = document.createElement('h2')
+    name.className = 'locationCard__name'
+    name.textContent = loc.name
 
-  const heroImg = document.createElement('img')
-  heroImg.src = '/assets/food/L_imprimerie_Hero_2880x2304(1).jpg'
-  heroImg.alt = 'Bread and pastries from L’imprimerie'
-  heroImg.loading = 'lazy'
-  heroImg.width = 1600
-  heroImg.height = 1000
+    const address = document.createElement('p')
+    address.className = 'locationCard__address'
+    address.textContent = loc.addressDisplay
 
-  heroPhoto.appendChild(heroImg)
-  hero.appendChild(heroPhoto)
+    const hours = getOpenNow({ tz: TIMEZONE, ...loc.hours }, new Date())
 
-  const address = document.createElement('p')
-  address.className = 'visitAddress'
-  address.textContent = ADDRESS_DISPLAY
+    const hoursRow = document.createElement('div')
+    hoursRow.className = 'locationCard__hours'
 
-  const actions = document.createElement('div')
-  actions.className = 'visitActions'
+    const pill = document.createElement('span')
+    pill.className = `statusPill ${hours.isOpen ? 'statusPill--open' : 'statusPill--closed'}`
+    pill.textContent = hours.isOpen ? 'Open now' : 'Closed'
 
-  const directions = document.createElement('a')
-  directions.className = 'button button--primary'
-  directions.href = getDirectionsUrl(ADDRESS_QUERY)
-  directions.target = '_blank'
-  directions.rel = 'noopener noreferrer'
-  directions.textContent = 'Get directions'
+    const hoursText = document.createElement('span')
+    hoursText.className = 'visitHoursText'
+    hoursText.textContent = loc.hoursDisplay
 
-  actions.appendChild(directions)
+    hoursRow.append(pill, hoursText)
+
+    const directions = document.createElement('a')
+    directions.className = 'button button--primary'
+    directions.href = getDirectionsUrl(loc.addressQuery)
+    directions.target = '_blank'
+    directions.rel = 'noopener noreferrer'
+    directions.textContent = 'Get directions'
+
+    card.append(photo, name, address, hoursRow, directions)
+    grid.appendChild(card)
+  }
 
   const delivery = document.createElement('a')
   delivery.className = 'textLink'
   delivery.href = '#/delivery'
   delivery.textContent = 'Prefer delivery? Find us on delivery apps'
 
-  const mapWrap = document.createElement('div')
-  mapWrap.className = 'mapWrap'
-
-  const iframe = document.createElement('iframe')
-  iframe.className = 'mapFrame'
-  iframe.title = `Map for ${ADDRESS_DISPLAY}`
-  iframe.loading = 'lazy'
-  iframe.referrerPolicy = 'no-referrer-when-downgrade'
-  iframe.src = getGoogleEmbedUrl(ADDRESS_QUERY)
-
-  const mapFallback = document.createElement('a')
-  mapFallback.className = 'mapFallback'
-  mapFallback.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-    ADDRESS_QUERY,
-  )}`
-  mapFallback.target = '_blank'
-  mapFallback.rel = 'noopener noreferrer'
-  mapFallback.textContent = 'Open in Google Maps'
-
-  mapWrap.append(iframe, mapFallback)
-
-  container.append(title, hoursRow, hero, address, actions, delivery, mapWrap)
+  container.append(title, lead, grid, delivery)
   section.appendChild(container)
   return section
 }
