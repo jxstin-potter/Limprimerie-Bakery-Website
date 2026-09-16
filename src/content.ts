@@ -1,4 +1,5 @@
 export const BRAND_NAME = "L'imprimerie"
+export const BRAND_TAGLINE = 'BAKERY · BUSHWICK'
 
 export const ADDRESS_DISPLAY = '1524 Myrtle Avenue, Bushwick'
 export const ADDRESS_QUERY = '1524 Myrtle Avenue, Brooklyn, NY'

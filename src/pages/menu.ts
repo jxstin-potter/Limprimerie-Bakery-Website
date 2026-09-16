@@ -1,6 +1,8 @@
 type MenuItem = {
   name: string
   note?: string
+  photo: string
+  alt: string
 }
 
 type MenuCategory = {
@@ -9,45 +11,118 @@ type MenuCategory = {
   items: MenuItem[]
 }
 
+const FOOD = '/assets/food'
+
 // TODO: Replace with the bakery’s actual curated selection.
 const CATEGORIES: MenuCategory[] = [
   {
     id: 'breads',
     title: 'Breads',
     items: [
-      { name: 'Baguette', note: 'Classic French loaf' },
-      { name: 'Country loaf', note: 'Hearty, everyday' },
-      { name: 'Sourdough', note: 'Naturally leavened' },
-      { name: 'Seasonal loaf', note: 'Rotates' },
+      {
+        name: 'Baguette',
+        note: 'Classic French loaf',
+        photo: `${FOOD}/L_imprimerie_Baguette_2880x2304.jpg`,
+        alt: 'Baguette',
+      },
+      {
+        name: 'Country loaf',
+        note: 'Hearty, everyday',
+        photo: `${FOOD}/L_imprimerie_Moisson_2880x2304.jpg`,
+        alt: 'Moisson country loaf',
+      },
+      {
+        name: 'Sourdough',
+        note: 'Naturally leavened',
+        photo: `${FOOD}/L_imprimerie_Levain_2880x2304.jpg`,
+        alt: 'Levain sourdough loaf',
+      },
+      {
+        name: 'Seasonal loaf',
+        note: 'Rotates',
+        photo: `${FOOD}/L_imprimerie_Fendu_2880x2304.jpg`,
+        alt: 'Fendu split loaf',
+      },
     ],
   },
   {
     id: 'viennoiserie',
     title: 'Viennoiserie',
     items: [
-      { name: 'Croissant' },
-      { name: 'Pain au chocolat' },
-      { name: 'Almond croissant' },
-      { name: 'Seasonal viennoiserie', note: 'Rotates' },
+      {
+        name: 'Croissant',
+        photo: `${FOOD}/L_imprimerie_PlainCroissant_2880x2304.jpg`,
+        alt: 'Plain croissant',
+      },
+      {
+        name: 'Pain au chocolat',
+        photo: `${FOOD}/L_imprimerie_ChocolateCroissant_2880x2304.jpg`,
+        alt: 'Chocolate croissant',
+      },
+      {
+        name: 'Almond croissant',
+        photo: `${FOOD}/L_imprimerie_AlmondCroissant_2880x2304.jpg`,
+        alt: 'Almond croissant',
+      },
+      {
+        name: 'Seasonal viennoiserie',
+        note: 'Rotates',
+        photo: `${FOOD}/L_imprimerie_MorningBun_2880x2304.jpg`,
+        alt: 'Morning bun',
+      },
     ],
   },
   {
     id: 'pastries',
     title: 'Pastries',
     items: [
-      { name: 'Fruit tart', note: 'Seasonal' },
-      { name: 'Éclair', note: 'Classic' },
-      { name: 'Financier' },
-      { name: 'Daily pastry', note: 'Ask in store' },
+      {
+        name: 'Fruit tart',
+        note: 'Seasonal',
+        photo: `${FOOD}/L_imprimerie_ApplePieDanish_2880x2304.jpg`,
+        alt: 'Apple pie danish',
+      },
+      {
+        name: 'Éclair',
+        note: 'Classic',
+        photo: `${FOOD}/L_imprimerie_Canele_2880x2304.jpg`,
+        alt: 'Canelé',
+      },
+      {
+        name: 'Financier',
+        photo: `${FOOD}/L_imprimerie_OrangeAlmondCake_2880x2304.jpg`,
+        alt: 'Orange almond cake',
+      },
+      {
+        name: 'Daily pastry',
+        note: 'Ask in store',
+        photo: `${FOOD}/L_imprimerie_SeasonalGateauCake_2880x2304.jpg`,
+        alt: 'Seasonal gâteau cake',
+      },
     ],
   },
   {
     id: 'sandwiches',
     title: 'Sandwiches',
     items: [
-      { name: 'Jambon beurre', note: 'Ham & butter' },
-      { name: 'Vegetarian', note: 'Seasonal' },
-      { name: 'Chicken', note: 'Rotates' },
+      {
+        name: 'Jambon beurre',
+        note: 'Ham & butter',
+        photo: `${FOOD}/L_imprimerie_JambonBeurre_2880x2304.jpg`,
+        alt: 'Jambon beurre sandwich',
+      },
+      {
+        name: 'Vegetarian',
+        note: 'Seasonal',
+        photo: `${FOOD}/L_imprimerie_VeganQuiche_2880x2304.jpg`,
+        alt: 'Vegan quiche',
+      },
+      {
+        name: 'Chicken',
+        note: 'Rotates',
+        photo: `${FOOD}/L_imprimerie_TurkeyPestoOnSourdough_2880x2304.jpg`,
+        alt: 'Turkey pesto on sourdough',
+      },
     ],
   },
 ]
@@ -74,11 +149,11 @@ export function renderMenuPage(): HTMLElement {
   heroPhoto.className = 'photo'
 
   const heroImg = document.createElement('img')
-  heroImg.src = '/assets/food/L_imprimerie_Levain_2880x2304.jpg'
-  heroImg.alt = 'Levain sourdough loaf from L’imprimerie'
+  heroImg.src = '/assets/food/L_imprimerie_Hero_2880x2304.jpg'
+  heroImg.alt = 'Bread and pastries from L’imprimerie'
   heroImg.loading = 'lazy'
   heroImg.width = 1600
-  heroImg.height = 2000
+  heroImg.height = 1000
 
   heroPhoto.appendChild(heroImg)
   hero.appendChild(heroPhoto)
@@ -122,11 +197,27 @@ export function renderMenuPage(): HTMLElement {
       const li = document.createElement('li')
       li.className = 'menuItem'
 
+      const photo = document.createElement('div')
+      photo.className = 'photo menuItem__photo'
+
+      const img = document.createElement('img')
+      img.src = item.photo
+      img.alt = item.alt
+      img.loading = 'lazy'
+      img.width = 640
+      img.height = 480
+
+      photo.appendChild(img)
+
+      const row = document.createElement('div')
+      row.className = 'menuItem__row'
+
       const name = document.createElement('span')
       name.className = 'menuItem__name'
       name.textContent = item.name
 
-      li.appendChild(name)
+      row.appendChild(name)
+      li.append(photo, row)
 
       if (item.note) {
         const note = document.createElement('span')

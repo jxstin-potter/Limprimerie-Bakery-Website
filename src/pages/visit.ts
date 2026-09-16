@@ -70,11 +70,11 @@ export function renderVisitPage(): HTMLElement {
   heroPhoto.className = 'photo'
 
   const heroImg = document.createElement('img')
-  heroImg.src = '/assets/food/L_imprimerie_Hero_2880x2304.jpg'
+  heroImg.src = '/assets/food/L_imprimerie_Hero_2880x2304(1).jpg'
   heroImg.alt = 'Bread and pastries from L’imprimerie'
   heroImg.loading = 'lazy'
   heroImg.width = 1600
-  heroImg.height = 2000
+  heroImg.height = 1000
 
   heroPhoto.appendChild(heroImg)
   hero.appendChild(heroPhoto)

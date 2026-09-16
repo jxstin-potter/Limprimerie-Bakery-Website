@@ -1,5 +1,5 @@
 import type { Route } from '../router'
-import { BRAND_NAME } from '../content'
+import { BRAND_NAME, BRAND_TAGLINE } from '../content'
 
 const ROUTES: Array<{ route: Route; label: string }> = [
   { route: '/menu', label: 'Menu' },
@@ -21,7 +21,7 @@ export function createHeader(activeRoute: Route): HTMLElement {
   const brand = document.createElement('a')
   brand.className = 'siteHeader__brand'
   brand.href = routeHref('/visit')
-  brand.textContent = BRAND_NAME
+  brand.innerHTML = `<strong>${BRAND_NAME}</strong><span>${BRAND_TAGLINE}</span>`
 
   const desktopNav = document.createElement('nav')
   desktopNav.className = 'siteHeader__nav siteHeader__nav--desktop'
