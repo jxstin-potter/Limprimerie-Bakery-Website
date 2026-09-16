@@ -81,27 +81,6 @@ export function renderMenuPage(): HTMLElement {
   lead.className = 'lead'
   lead.textContent = '7am - 3pm or until sold out'
 
-  const jumps = document.createElement('nav')
-  jumps.className = 'menuJumps'
-  jumps.setAttribute('aria-label', 'Menu categories')
-  for (const cat of CATEGORIES) {
-    const btn = document.createElement('button')
-    btn.type = 'button'
-    btn.textContent = cat.title
-    btn.addEventListener('click', () => {
-      const el = document.getElementById(cat.id)
-      if (!el) return
-      const prefersReducedMotion = window.matchMedia(
-        '(prefers-reduced-motion: reduce)',
-      ).matches
-      el.scrollIntoView({
-        behavior: prefersReducedMotion ? 'auto' : 'smooth',
-        block: 'start',
-      })
-    })
-    jumps.appendChild(btn)
-  }
-
   const content = document.createElement('div')
   content.className = 'menuContent'
 
@@ -172,7 +151,7 @@ export function renderMenuPage(): HTMLElement {
 
   utils.append(visit, delivery)
 
-  container.append(title, lead, jumps, content, utils)
+  container.append(title, lead, content, utils)
   section.appendChild(container)
   return section
 }

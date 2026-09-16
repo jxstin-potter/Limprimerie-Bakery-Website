@@ -7,7 +7,8 @@ export const PHONE_TEL = '+19292956464'
 // TODO: Replace with a real inbox — used to build a mailto: link on the Contact page.
 export const EMAIL_DISPLAY = 'hello@limprimerie.bakery'
 
-export const TIMEZONE = 'America/New_York'
+// One hours line for both shops, shown under the Visit headline.
+export const HOURS_DISPLAY = '7am - 6pm (or until sold out)'
 
 // The operational statement, repeated on Visit and Contact — the site's core message.
 export const POLICY_PRODUCTION =
@@ -15,20 +16,11 @@ export const POLICY_PRODUCTION =
 export const POLICY_NO_PREORDERS =
   'We do not offer pre-orders, catering, or wholesale.'
 
-export type StoreHours = {
-  openHour: number
-  openMinute: number
-  closeHour: number
-  closeMinute: number
-}
-
 export type Location = {
   id: string
   name: string
   addressDisplay: string
   addressQuery: string
-  hoursDisplay: string
-  hours: StoreHours
   photo: string
   photoAlt: string
 }
@@ -38,20 +30,16 @@ export const LOCATIONS: ReadonlyArray<Location> = [
   {
     id: 'bushwick',
     name: 'Bushwick',
-    addressDisplay: '1524 Myrtle Avenue, Bushwick',
+    addressDisplay: '1524 Myrtle Avenue, Brooklyn',
     addressQuery: '1524 Myrtle Avenue, Brooklyn, NY',
-    hoursDisplay: '7am - 6pm or until sold out',
-    hours: { openHour: 7, openMinute: 0, closeHour: 18, closeMinute: 0 },
     photo: '/assets/food/L_imprimerie_Hero_2880x2304.jpg',
     photoAlt: 'Bread and pastries from L’imprimerie, Bushwick',
   },
   {
     id: 'clinton-hill',
     name: 'Clinton Hill',
-    addressDisplay: '204 DeKalb Avenue, Clinton Hill',
+    addressDisplay: '204 DeKalb Avenue, Brooklyn',
     addressQuery: '204 DeKalb Avenue, Brooklyn, NY',
-    hoursDisplay: '7:30am - 5pm or until sold out',
-    hours: { openHour: 7, openMinute: 30, closeHour: 17, closeMinute: 0 },
     photo: '/assets/food/L_imprimerie_Hero_2880x2304(1).jpg',
     photoAlt: 'Bread and pastries from L’imprimerie, Clinton Hill',
   },

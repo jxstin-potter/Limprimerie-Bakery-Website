@@ -1,11 +1,10 @@
 import {
+  HOURS_DISPLAY,
   LOCATIONS,
   POLICY_NO_PREORDERS,
   POLICY_PRODUCTION,
-  TIMEZONE,
 } from '../content'
 import { getDirectionsUrl } from '../utils/maps'
-import { getOpenNow } from '../utils/time'
 
 export function renderVisitPage(): HTMLElement {
   const section = document.createElement('section')
@@ -16,11 +15,11 @@ export function renderVisitPage(): HTMLElement {
 
   const title = document.createElement('h1')
   title.className = 'pageTitle'
-  title.textContent = 'Visit us!'
+  title.textContent = 'Open daily'
 
   const lead = document.createElement('p')
   lead.className = 'lead'
-  lead.textContent = 'Two Brooklyn locations'
+  lead.textContent = HOURS_DISPLAY
 
   const grid = document.createElement('div')
   grid.className = 'locationGrid'
@@ -41,6 +40,9 @@ export function renderVisitPage(): HTMLElement {
 
     photo.appendChild(img)
 
+    const overlay = document.createElement('div')
+    overlay.className = 'locationCard__overlay'
+
     const name = document.createElement('h2')
     name.className = 'locationCard__name'
     name.textContent = loc.name
@@ -52,27 +54,13 @@ export function renderVisitPage(): HTMLElement {
     address.rel = 'noopener noreferrer'
     address.textContent = loc.addressDisplay
 
-    const hours = getOpenNow({ tz: TIMEZONE, ...loc.hours }, new Date())
-
-    const hoursRow = document.createElement('div')
-    hoursRow.className = 'locationCard__hours'
-
-    const pill = document.createElement('span')
-    pill.className = `statusPill ${hours.isOpen ? 'statusPill--open' : 'statusPill--closed'}`
-    pill.textContent = hours.isOpen ? 'Open now' : 'Closed'
-
-    const hoursText = document.createElement('span')
-    hoursText.className = 'visitHoursText'
-    hoursText.textContent = loc.hoursDisplay
-
-    hoursRow.append(pill, hoursText)
-
     const menu = document.createElement('a')
     menu.className = 'button button--primary'
     menu.href = '#/menu'
     menu.textContent = 'Menu'
 
-    card.append(photo, name, address, hoursRow, menu)
+    overlay.append(name, address, menu)
+    card.append(photo, overlay)
     grid.appendChild(card)
   }
 
